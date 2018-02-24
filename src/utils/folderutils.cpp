@@ -141,14 +141,14 @@ QDir FolderUtils::getAppPartsSubFolder2(QString search) {
 }
 
 QString FolderUtils::getTopLevelUserDataStorePath() {
-    QString path = QSettings(QSettings::IniFormat,QSettings::UserScope,"Fritzing","Fritzing").fileName();
+    QString path = QSettings(QSettings::IniFormat,QSettings::UserScope,"Fritzing_dev","Fritzing_dev").fileName();
     return QFileInfo(path).dir().absolutePath();
 }
 
 QString FolderUtils::getTopLevelDocumentsPath() {
     // must add a fritzing subfolder
     QDir dir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
-    return dir.absoluteFilePath("Fritzing");
+    return dir.absoluteFilePath("Fritzing_dev");
 }
 
 QString FolderUtils::getUserBinsPath() {
