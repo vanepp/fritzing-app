@@ -75,8 +75,8 @@ void Ruler::resizeMM(double magnitude, double unitsFlag, const LayerHash & viewL
 	double newW = TextUtils::convertToInches(QString::number(magnitude) + units);
 	if (w == newW) return;
 
-    // save local prop incase render fails so we can revert back to orignal.
-    QString orignalProp = m_modelPart->localProp("width").toString();
+    // save local prop incase render fails so we can revert back to original.
+    QString originalProp = m_modelPart->localProp("width").toString();
 
     // set local prop so makeSvg has the current mag and units.
     modelPart()->setLocalProp("width", QVariant(QString::number(magnitude) + units));
@@ -85,8 +85,8 @@ void Ruler::resizeMM(double magnitude, double unitsFlag, const LayerHash & viewL
 
 	bool result = resetRenderer(s);
     if (!result) {
-        // if render error restore orginal prop
-        modelPart()->setLocalProp("width", QVariant(orignalProp));
+        // if render error restore original prop
+        modelPart()->setLocalProp("width", QVariant(originalProp));
 	}
 	//	DebugDialog::debug(QString("fast load result %1 %2").arg(result).arg(s));
 
@@ -364,8 +364,8 @@ void Ruler::unitsEntry() {
 
     double inches = TextUtils::convertToInches(prop("width"));
 
-    // save local prop incase render fails so we can revert back to orignal.
-    QString orignalProp = m_modelPart->localProp("width").toString();
+    // save local prop incase render fails so we can revert back to original.
+    QString originalProp = m_modelPart->localProp("width").toString();
 
 	if (units == "in") {
         // set local prop so makeSvg has the current width and units.
@@ -378,8 +378,8 @@ void Ruler::unitsEntry() {
             m_widthValidator->setTop(20);
         }
         else {
-            // if render error restore orginal prop
-            modelPart()->setLocalProp("width", QVariant(orignalProp));
+            // if render error restore original prop
+            modelPart()->setLocalProp("width", QVariant(originalProp));
         }
 	}
 	else {
@@ -393,8 +393,8 @@ void Ruler::unitsEntry() {
             m_widthValidator->setTop(20 * 2.54);
         }
         else {
-            // if render error restore orginal prop
-            modelPart()->setLocalProp("width", QVariant(orignalProp));
+            // if render error restore original prop
+            modelPart()->setLocalProp("width", QVariant(originalProp));
         }
 	}
 	DefaultWidth = prop("width");

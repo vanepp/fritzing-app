@@ -150,9 +150,11 @@ int main(int argc, char *argv[])
 			}
 			app->finish();
 		}
-		else {
-			qDebug() <<
-                "Fritzing version" << Version::versionString() << "- Qt version" << QT_VERSION_STR << "\n"
+		else
+        {
+            QTextStream cout(stdout);
+            cout <<
+                "Fritzing version " << Version::versionString() << " - Qt version " << QT_VERSION_STR << "\n"
                 "\n"
                 "usage: fritzing [-d] [-f path] filename\n"
                 "       fritzing [-f path] -geda folder\n"
@@ -165,12 +167,12 @@ int main(int argc, char *argv[])
                 "user options:\n"
                 "  d,debug            :  runs Fritzing in debug mode, providing additional debug information\n"
                 //"  drc filename       :  runs a design rule check on the given sketch file\n"
-                "  f,folder           :  path to folder containing Fritzing parts, sketches, bins, & translations folders}]\n"
-                "  geda path          :  converts all gEDA footprint (.fp) files in folder <path> to Fritzing SVGs}]\n"
+                "  f,folder           :  path to folder containing Fritzing parts, sketches, bins, & translations folders\n"
+                "  geda path          :  converts all gEDA footprint (.fp) files in folder <path> to Fritzing SVGs\n"
                 "  g,gerber path      :  exports all sketches in folder <path> to Gerber, in the same folder\n"
                 "  h,help             :  print this help message\n"
-                "  kicad path         :  converts all Kicad footprint (.mod) files in folder <path> to Fritzing SVGs}]\n"
-                "  kicadschematic path:  converts all Kicad schematic (.lib) files in folder <path> to Fritzing SVGs}]\n"
+                "  kicad path         :  converts all Kicad footprint (.mod) files in folder <path> to Fritzing SVGs\n"
+                "  kicadschematic path:  converts all Kicad schematic (.lib) files in folder <path> to Fritzing SVGs\n"
                 "  port               :  runs Fritzing as a server process under <port>\n"
                 "  svg path           :  exports all sketches in folder <path> to SVGs of all views, in the same folder\n"
                 "\n"
@@ -191,7 +193,7 @@ int main(int argc, char *argv[])
 				"The -ep option creates a menu item to launch an external process,\n"
 				"and puts the standard output of that process into a dialog window in Fritzing.\n"
 				"The process path follows the -ep argument; the name of the menu item follows the -epname argument;\n"
-				"and any arguments to pass to the external process are provided in the -eparg argments.";
+				"and any arguments to pass to the external process are provided in the -eparg arguments.\n";
 		}
 		delete app;
 	}

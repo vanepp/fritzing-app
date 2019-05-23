@@ -265,7 +265,7 @@ bool FolderUtils::setApplicationPath2(const QString & path)
     QDir dir(path);
     if (!dir.exists()) return false;
 
-    m_appPath = path;
+    m_appPath = dir.canonicalPath();
     return true;
 }
 
@@ -274,7 +274,7 @@ bool FolderUtils::setPartsPath2(const QString & path)
     QDir dir(path);
     if (!dir.exists()) return false;
 
-    m_partsPath = path;
+    m_partsPath = dir.canonicalPath();
     return true;
 }
 
@@ -400,11 +400,9 @@ bool FolderUtils::createFZAndSaveTo(const QDir &dirToCompress, const QString &fi
 
 	QFileInfoList files=dirToCompress.entryInfoList();
 	QFile inFile;
-	
-	char c;
 
-	QString currFolderBU = QDir::currentPath();
-	QDir::setCurrent(dirToCompress.path());
+    QString currFolderBU = QDir::currentPath();
+    QDir::setCurrent(dirToCompress.path());
 	foreach(QFileInfo file, files) {
 		if(!file.isFile()||file.fileName()==filepath) continue;
 		if (file.fileName().contains(LockManager::LockedFileName)) continue;
